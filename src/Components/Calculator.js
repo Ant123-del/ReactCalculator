@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react'
 
 export default function Calculator(props){
-    const [numbers, setNumbers] = useState([''])
-    const [log, setLog] = useState('')
+    const [numbers, setNumbers] = useState(['0'])
+    const [log, setLog] = useState('0')
     const [currentIndex, setCurrentIndex] = useState(0)
 
     useEffect(() => {
@@ -114,10 +114,11 @@ export default function Calculator(props){
         <div id='calculator'>
             <Logger value={log}/>
             <div id='options'>
-                <button className='optionsKey' onClick={clear}>C</button>
-                <button className='optionsKey' onClick={clearIndex}>CE</button>
-                <button className='optionsKey' onClick={ChangePositivity}>+/-</button>
+                <button className='Key opt' onClick={clear}>C</button>
+                <button className='Key opt' onClick={clearIndex}>CE</button>
+                <button className='Key opt' onClick={ChangePositivity}>+/-</button>
             </div>
+            <div id='keypadOp'>
             <div id='keypad'>
                 <div className='Row'>
                     <CalculatorKey Key={'1'} handleClick={handleKeyClick}/>
@@ -135,19 +136,19 @@ export default function Calculator(props){
                     <CalculatorKey Key={'9'} handleClick={handleKeyClick}/>
                 </div>
                 <div className='Row'>
-                    <CalculatorKey Key={'0'} handleClick={handleKeyClick}/>
+                    <CalculatorKey Key={'0'} specialKey='space' handleClick={handleKeyClick}/>
                     <CalculatorKey Key={'.'} handleClick={handleKeyClick}/>
                 </div>
                 
             </div>
             <div id='operators'>
-                <CalculatorKey Key={'+'} handleClick={handleOperatorClick}/>
-                <CalculatorKey Key={'-'} handleClick={handleOperatorClick}/>
-                <CalculatorKey Key={'*'} handleClick={handleOperatorClick}/>
-                <CalculatorKey Key={'/'} handleClick={handleOperatorClick}/>
-                <CalculatorKey Key={'='} handleClick={Equal}/>
+                <CalculatorKey Key={'+'} specialKey="op" handleClick={handleOperatorClick}/>
+                <CalculatorKey Key={'-'} specialKey="op" handleClick={handleOperatorClick}/>
+                <CalculatorKey Key={'*'} specialKey="op" handleClick={handleOperatorClick}/>
+                <CalculatorKey Key={'/'} specialKey="op" handleClick={handleOperatorClick}/>
+                <CalculatorKey Key={'='} specialKey="op" handleClick={Equal}/>
             </div>
-
+            </div>
         </div>
     )
 }
@@ -163,6 +164,6 @@ function Logger(props) {
 
 function CalculatorKey(props) {
     return (
-        <button className="Key" onClick={props.handleClick} value={props.Key}>{props.Key}</button>
+        <button className={props?.specialKey ?"Key " + props.specialKey : "Key"} onClick={props.handleClick} value={props.Key}>{props.Key}</button>
     )
 }

@@ -1,0 +1,74 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  background-color: black
+}
+
+:root {
+  --button-color: rgb(38, 36, 42);
+  --buttonSize: 65px
+}
+
+#calculator {
+  width: fit-content;
+  height: fit-content;
+  margin: 20vh auto;
+}
+.Key {
+  width: var(--buttonSize);
+  height: var(--buttonSize);
+  font-size: 20px;
+  margin: 4px;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  background: rgb(90, 89, 92);
+}
+
+.space {
+  width: calc(var(--buttonSize) * 2);
+  border-radius: 60px;
+}
+
+#operators {
+  display: inline-flex;
+  flex-direction: column;
+  
+}
+
+.op {
+  background: rgb(255, 159, 10);
+}
+
+.opt {
+  background: var(--button-color);
+}
+
+#keypadOp {
+  display: flex;
+  align-items: flex-end;
+}
+
+#options {
+  display: inline-block;
+  position: absolute;
+}
+
+.Log input {
+  width: calc(var(--buttonSize) * 4);
+  height: 35px;
+  font-size: 40px;
+  margin: 30px auto;
+  padding: 4px;
+  color: white;
+  background: black;
+  border: none;
+  text-align: end;
+}
+
+.Key:hover {
+  filter: brightness(1.2);
+}
