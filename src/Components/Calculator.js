@@ -14,7 +14,12 @@ export default function Calculator(props){
     }, [numbers])
 
     useEffect(() => {
-        setLog(numbers[currentIndex])
+        console.log(numbers)
+        if(currentIndex === 2 && numbers[currentIndex] === '') {
+            setLog(numbers[0])
+        } else {
+            setLog(numbers[currentIndex])
+        }
     }, [numbers])
     
     function combine(NumsArray) {
@@ -47,7 +52,6 @@ export default function Calculator(props){
         } 
 
         let newNum = numbers[currentIndex] + target.value
-        console.log(newNum)
         setNumbers(prev => {
             let newNums = [...prev]
             if(newNum[0] === '0' && newNums[currentIndex].length === 1 && target.value !== '.') {
@@ -61,6 +65,7 @@ export default function Calculator(props){
     
     function clear() {
         setNumbers([''])
+        setLog('')
     }
 
     function clearIndex() {
@@ -95,11 +100,10 @@ export default function Calculator(props){
                 newPrev.push(target.value)
                 newPrev.push('')
             } else if(newPrev.length === 3) {
-                const FinalNum = combine(newPrev)
-                newPrev = [FinalNum, target.value]
+                const FinalNum = combine(newPrev) + ''
+                const newList = [FinalNum, target.value, '']
                 setLog(FinalNum)
-                console.log(currentIndex)
-                return newPrev
+                return newList
             }
             
             return newPrev
